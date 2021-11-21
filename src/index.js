@@ -53,6 +53,7 @@ async function initContract() {
   return { contract, currentUser, nearConfig, walletConnection };
 }
 
+// eslint-disable-next-line no-undef
 window.nearInitPromise = initContract().then(
   ({ contract, currentUser, nearConfig, walletConnection }) => {
     ReactDOM.render(
@@ -62,6 +63,7 @@ window.nearInitPromise = initContract().then(
         nearConfig={nearConfig}
         wallet={walletConnection}
       />,
+      // eslint-disable-next-line no-undef
       document.getElementById('root')
     );
   }

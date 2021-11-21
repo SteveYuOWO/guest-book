@@ -1,0 +1,2 @@
+near create-account guest-book.steveyu.testnet --masterAccount steveyu.testnet
+near deploy guest-book.steveyu.testnet ./out/main.wasm

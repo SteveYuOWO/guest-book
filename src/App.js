@@ -11,10 +11,13 @@ const BOATLOAD_OF_GAS = Big(3).times(10 ** 13).toFixed();
 
 const App = ({ contract, currentUser, nearConfig, wallet }) => {
   const [messages, setMessages] = useState([]);
-
   useEffect(() => {
     // TODO: don't just fetch once; subscribe!
-    contract.getMessages().then(setMessages);
+    contract.getMessages().then((messages) => {
+      for(let i = 0; i < messages.length; i++) {
+        setMessages(messages);
+      }
+    });
   }, []);
 
   const onSubmit = (e) => {
@@ -58,10 +61,13 @@ const App = ({ contract, currentUser, nearConfig, wallet }) => {
     <main>
       <header>
         <h1>NEAR Guest Book</h1>
-        { currentUser
-          ? <button onClick={signOut}>Log out</button>
-          : <button onClick={signIn}>Log in</button>
-        }
+        <div>
+          { 
+            currentUser
+            ? <button onClick={signOut}>Log out</button>
+            : <button onClick={signIn}>Log in</button>
+          }
+        </div>
       </header>
       { currentUser
         ? <Form onSubmit={onSubmit} currentUser={currentUser} />

@@ -32491,36 +32491,30 @@ const App = ({
   wallet
 }) => {
   const [messages, setMessages] = (0, _react.useState)([]);
-  (0, _react.useEffect)(() => {
-    // TODO: don't just fetch once; subscribe!
-    contract.getMessages().then(messages => {
-      for (let i = 0; i < messages.length; i++) {
-        setMessages(messages);
-      }
-    });
+  (0, _react.useEffect)(() => {// TODO: don't just fetch once; subscribe!
+    // contract.getMessages().then((messages) => {
+    //   for(let i = 0; i < messages.length; i++) {
+    //     setMessages(messages);
+    //   }
+    // });
   }, []);
 
   const onSubmit = e => {
     e.preventDefault();
     const {
       fieldset,
-      nftname,
-      donation
+      nftname
     } = e.target.elements;
     fieldset.disabled = true; // TODO: optimistically update page with new message,
     // update blockchain data in background
     // add uuid to each message, so we know which one is already known
 
-    contract.nft_mint({
+    contract.mint({
       token_id: nftname.value
-    }, BOATLOAD_OF_GAS, (0, _big.default)(donation.value || '0').times(10 ** 24).toFixed()).then(() => {
-      contract.getMessages().then(messages => {
-        setMessages(messages);
-        nftname.value = '';
-        donation.value = SUGGESTED_DONATION;
-        fieldset.disabled = false;
-        nftname.focus();
-      });
+    }, BOATLOAD_OF_GAS, (0, _big.default)('0').times(10 ** 24).toFixed()).then(() => {
+      alert('success');
+    }).catch(error => {
+      alert('Exists');
     });
   };
 
@@ -32545,23 +32539,6 @@ const App = ({
   }));
 };
 
-App.propTypes = {
-  contract: _propTypes.default.shape({
-    addMessage: _propTypes.default.func.isRequired,
-    getMessages: _propTypes.default.func.isRequired
-  }).isRequired,
-  currentUser: _propTypes.default.shape({
-    accountId: _propTypes.default.string.isRequired,
-    balance: _propTypes.default.string.isRequired
-  }),
-  nearConfig: _propTypes.default.shape({
-    contractName: _propTypes.default.string.isRequired
-  }).isRequired,
-  wallet: _propTypes.default.shape({
-    requestSignIn: _propTypes.default.func.isRequired,
-    signOut: _propTypes.default.func.isRequired
-  }).isRequired
-};
 var _default = App;
 exports.default = _default;
 },{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","big.js":"../node_modules/big.js/big.js","./components/Form":"components/Form.jsx","./components/SignIn":"components/SignIn.jsx","./components/Messages":"components/Messages.jsx"}],"config.js":[function(require,module,exports) {
@@ -52457,7 +52434,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61948" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64775" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

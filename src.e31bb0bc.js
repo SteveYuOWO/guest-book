@@ -52374,7 +52374,7 @@ async function initContract() {
   walletConnection.account(), // accountId of the contract we will be loading
   // NOTE: All contracts on NEAR are deployed to an account and
   // accounts can only have one contract deployed to them. 
-  nearConfig.contractName, {
+  'stevenft.steveyu.testnet', {
     // View methods are read-only – they don't modify the state, but usually return some value
     viewMethods: ['nft_token'],
     // Change methods can modify the state, but you don't receive the returned value when called
@@ -52434,7 +52434,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64775" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49671" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
